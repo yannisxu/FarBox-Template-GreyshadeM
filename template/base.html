@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
+	<meta name="baidu_union_verify" content="dcb2a82c1a8458c534065d171eee98f0">
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <title>{% block title %}{{ site.configs.title }} {% endblock %}</title>
 
@@ -12,21 +13,24 @@
 
     <link rel='alternate' type='application/rss+xml' title='atom 1.0' href='/feed' />
     
-    <link href="/favicon.png" rel="shortcut icon">
+    <link href="/favicon.ico" rel="shortcut icon">
 	{% if site.configs.highlight %}
-	<link href="/template/css/highlight.css" media="screen, projection" rel="stylesheet" type="text/css">
+<!-- 	<link href="/template/css/highlight.css" media="screen, projection" rel="stylesheet" type="text/css"> -->
+	<script src="//cdn.bootcss.com/highlight.js/8.8.0/highlight.min.js"></script>
+	<link href="//cdn.bootcss.com/highlight.js/8.8.0/styles/solarized_light.min.css" rel="stylesheet">
+	<script>hljs.initHighlightingOnLoad();</script>
 	{% endif %}
     <link href="/template/css/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
     <link href="/template/css/style.css" rel="stylesheet" type="text/css">
     <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script src="http://libs.useso.com/js/jquery/1.7.2/jquery.min.js"></script>
 	<link rel="stylesheet" href="/template/css/fancybox/jquery.fancybox.css" type="text/css" media="screen" />
     <script type="text/javascript" src="/template/css/fancybox/jquery.fancybox.pack.js"></script>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.useso.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
     <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
-    <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css">
+    <link href="http://fonts.useso.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+    <link href="http://fonts.useso.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+    <link href="http://fonts.useso.com/css?family=Lobster" rel="stylesheet" type="text/css">
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$("a[href$='.jpg'],a[href$='.jpeg'],a[href$='.png'],a[href$='.gif'],a[href$='.bmp'],a[href$='.JPG'],a[href$='.JPEG'],a[href$='.PNG'],a[href$='.GIF'],a[href$='.BMP']").attr('rel','group-images').fancybox({
@@ -34,6 +38,8 @@
 				closeEffect	: 'none'
 			});
 		});
+		// !function(){window.kivo=window.kivo||{},kivo.enableAnnotations=function(){kivo.enabled=!0},window.kivoApiKey="5e4cce386cb7";var a=document.createElement("script");a.type="text/javascript",a.src="https://crackling-fire-5799.firebaseapp.com/kivo-talk/dist/browserify.js",document.getElementsByTagName("head")[0].appendChild(a)}();
+		// kivo.enableAnnotations();
 	</script>
 
 </head>
@@ -44,31 +50,10 @@
             <div class="intrude-less">
             <header id="header" class="inner">
                 <div class="profilepic">
-					{% if site.configs.gravatar %}
-					<script src="/template/js/md5.js"></script>
-                    <script type="text/javascript">
-                    document.write("<img src='http://0.gravatar.com/avatar/" + MD5("{{ site.configs.gravatar }}") + "?s=160' alt='Profile Picture' style='width: 160px;' id='ProfilePicture'");
+                	<script type="text/javascript">
+                    document.write("<img src='http://ww4.sinaimg.cn/large/5322f6a5jw1ena6sjun3oj21i01i00y9.jpg' style='width: 160px;' id='ProfilePicture'");
                     </script>
-					</br>
-					{% endif %}
                 </div>
-				{% if site.configs.weixin %}
-				<div class="ProfileWeixin">
-					<img src="/images/social/weixinqrcode.png" alt="微信二维码" style="width: 160px; border-radius:0%; -moz-border-radius:0%; -webkit-border-radius:0%; display: none" id="ProfileWeixin" />
-					<script type="text/javascript">
-						function weixin_mouseOver()
-						{
-							document.getElementById( "ProfilePicture" ).style.display = "none"
-							document.getElementById( "ProfileWeixin" ).style.display = ""
-						}
-						function weixin_mouseOut()
-						{
-							document.getElementById( "ProfilePicture" ).style.display = ""
-							document.getElementById( "ProfileWeixin" ).style.display = "none"
-						}
-					</script>
-				</div>
-				{% endif %}
 				{% if site.configs.title %}
                 <h1><a href="/">{{ site.configs.title }}</a></h1>
 				{% endif %}
@@ -85,10 +70,6 @@
                             <li><a href="/tags">标签</a></li>
                             {% endif %}
                         {% endif %}
-
-                        {% if has('images') and has('posts')%}
-                        <li><a href="/folder/">相册</a></li>
-                        {% endif %}
                         
 						{% if has('isaid.md') %}
 						{% set isaid_post = get_post('isaid.md') %}
@@ -102,7 +83,6 @@
                         {% if has('about.md') %}
                         <li><a href="/about.md">关于</a></li>
                         {% endif %}
-
 
                     </ul>
                 </nav>
@@ -146,14 +126,6 @@
 					{% endif %}
 					{% if site.configs.qqqun %}
 					<a class="qqqun" href="{{ site.configs.qqqun }}" title="{{ site.configs.qqqunname }}"  target="_blank">{{ site.configs.qqqunname }}"</a>
-					{% endif %}
-					{% if site.configs.weixin %}
-					<a class="weixin" href="/images/social/weixinqrcode.png" title="{{ site.configs.weixin }}" target="_blank" onmouseover="weixin_mouseOver()" onmouseout="weixin_mouseOut()">微信</a>
-					<script type="text/javascript">
-						$(document).ready(function(){
-							$(".weixin").removeAttr("rel");
-						});
-					</script>
 					{% endif %}
 					{% if site.configs.douban %}
 					<a class="douban" href="{{ site.configs.douban }}" title="豆瓣">豆瓣</a>
